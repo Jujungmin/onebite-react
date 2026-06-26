@@ -1,12 +1,11 @@
 import './App.css';
 import { useState } from 'react';
-import Register from './components/Register';
+import HookExam from './components/HookExam';
 
 function App() {
-  const [light, setLight] = useState('Off');
   return (
     <>
-      <Register />
+      <HookExam />
     </>
   )
 }
