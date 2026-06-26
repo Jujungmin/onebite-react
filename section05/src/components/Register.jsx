@@ -1,67 +1,47 @@
-import { useState } from "react";
-// 간단한 회원가입 폼
-// 1. 이름
-// 2. 생년월일
-// 3. 국적
-// 4. 자기소개
+import { useState, useRef } from "react";
 
-// 객체로 만들어서 하나의 스테이트 묶음
+// let count = 0; 두 개의 컴포넌트가 하나의 변수를 공유 => 권장하지 않는다.
+
 const Register = () => {
-
-  const [num, setNum] = useState(0);
-  console.log(num);
-  console.log(typeof setNum);
-
   const [input, setInput] = useState({
     name: '',
     birth: '',
     country: '',
     bio: '',
   });
+  
+  const countRef = useRef(0);
+  // console.log('Register 리렌더링'); // useRef()는 컴포넌트 내부에서 렌더링영향에 미치지 않는다.
+  // console.log(useRef()); // {current: undefined}
+  const inputRef = useRef();
 
-  // 여러 개 비슷하게 동작하는 이벤트 하나로 묶음 : 통합 이벤트 핸들러
+  // let count = 0;
+
   const onChange = (e) => {
-    // console.log(e.target.name, e.target.value);
+    countRef.current++;
+    console.log(countRef.current);
+    // count++;
+    // console.log(count); // 1만 계속 출력(1고정)
+    // useState(), useRef() 컴포넌트가 리렌더링된다고해서 다시 리셋되지 않음
     setInput({
       ...input,
       [e.target.name]: e.target.value
-      // 각 input의 name값 호출
     })
   }
-  // setInput상태변화 함수 호출
-  // 스프레드 연산자로 기존 input값 나열
-  
-  // const onChangeName = (e) => {
-  //   setInput({
-  //     ...input, // 스프레드기법(모두 가져오기)
-  //     name: e.target.value // 변경하고자하는 자식(properties) 값
-  //   });
-  // };
-  // const onChangeBirth = (e) => {
-  //   setInput({
-  //     ...input,
-  //     birth: e.target.value
-  //   });
-  // };
-  // const onChangeCountry = (e) => {
-  //   setInput({
-  //     ...input,
-  //     country: e.target.value
-  //   });
-  // };
-  // const onChangeBio = (e) => {
-  //   setInput(
-  //     {
-  //     ...input,
-  //     bio: e.target.value
-  //   }
-  //   );
-  // };
-  
+
+  const onSubmit = () => {
+    if(input.name === '') {
+      // 이름을 입력하는 DOM 요소에 포커스
+      // console.log(inputRef.current);
+      inputRef.current.focus();
+    }
+  }
+
   return (
     <div>
       <div>
         <input 
+          ref={inputRef}
           name="name"
           value={input.name}
           placeholder={'이름'}
@@ -95,6 +75,7 @@ const Register = () => {
           onChange={onChange}
         />
       </div>
+      <button onClick={onSubmit}>제출</button>
     </div>
   )
 }
