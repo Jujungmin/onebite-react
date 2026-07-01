@@ -52,7 +52,7 @@ function App() {
   // setTodos(todos.map((todo) => {
   //   if(todo.id === targetId) {
   //       return {
-  //         ...todos,
+  //         ...todo,
   //         isDone: !todo.isDone
   //       }
   //     }
