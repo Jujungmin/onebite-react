@@ -41,14 +41,36 @@ function App() {
     // todos 배열에 newTodo추가
     // todos.push(newTodo); 절대안됨.
     // 상태변화 함수를 호출해서 수정해야됨 => state값을 리액트가 감지하고 컴포넌트를 정상적으로 리렌더링 할 수있음.
-    setTodos([newTodo, ...todos]); // 배열안에 기존 todos 가져오고, 두번째 인자에 새로운 데이터 넣기
+    setTodos((prevTodos)=> [newTodo, ...prevTodos]); // 배열안에 기존 todos 가져오고, 두번째 인자에 새로운 데이터 넣기
+  }
+
+  const onUpdate = (targetId) => {
+  // todos State의 값들 중에
+  // targetId와 일치하는 id를 갖는 투두 아이템 isDone 변경
+
+  // 인수: todos배열에서 targetId와 일치하는 id를 갖는 요소의 데이터만 딱 바꾼 배열
+  // setTodos(todos.map((todo) => {
+  //   if(todo.id === targetId) {
+  //       return {
+  //         ...todos,
+  //         isDone: !todo.isDone
+  //       }
+  //     }
+  //     return todo;
+  //   }
+  // ))
+  setTodos(todos.map((todo) =>
+    todo.id === targetId 
+      ? {...todo, isDone: !todo.isDone}
+      : todo
+    ))
   }
 
   return (
     <div className="App">
       <Header />
       <Editor onCreate={onCreate} />
-      <List todos={todos} />
+      <List todos={todos} onUpdate={onUpdate} />
     </div>
   )
 }

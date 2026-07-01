@@ -2,7 +2,7 @@ import "./List.css";
 import TodoItem from "./TodoItem";
 import { useState } from "react";
 
-const List = ({ todos }) => {
+const List = ({ todos, onUpdate }) => {
   const [search, setSearch] = useState('');
 
   const onChangeSearch = (e) => {
@@ -28,7 +28,7 @@ const List = ({ todos }) => {
       />
       <div className="todos_wrapper">
         {fitleredTodos.map((todo) => {
-          return <TodoItem key={todo.id} {...todo} /> // ...todo의 기능 => TodoItem의 props를 가져오기 위해
+          return <TodoItem key={todo.id} {...todo} onUpdate={onUpdate} /> // ...todo의 기능 => TodoItem의 props를 가져오기 위해
         })}
       </div>
     </div>
