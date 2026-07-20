@@ -26,7 +26,6 @@ const mockData = [
   },
 ];
 
-
 function App() {
   const [todos, setTodos] = useState(mockData);
   const idRef = useRef(3);
@@ -37,22 +36,21 @@ function App() {
       isDone: false,
       content: content,
       date: new Date().getTime(),
-    }
-    setTodos((prevTodos)=> [newTodo, ...prevTodos]);
-  }
+    };
+    setTodos((prevTodos) => [newTodo, ...prevTodos]);
+  };
 
   const onUpdate = (targetId) => {
-  setTodos(todos.map((todo) =>
-    todo.id === targetId 
-      ? {...todo, isDone: !todo.isDone}
-      : todo
-    ))
-  }
+    setTodos(
+      todos.map((todo) =>
+        todo.id === targetId ? { ...todo, isDone: !todo.isDone } : todo,
+      ),
+    );
+  };
 
   const onDelete = (targetId) => {
-    setTodos(todos.filter((todo) => todo.id !== targetId))
-  }
-
+    setTodos(todos.filter((todo) => todo.id !== targetId));
+  };
 
   return (
     <div className="App">
@@ -61,7 +59,7 @@ function App() {
       <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} /> */}
       <Exam />
     </div>
-  )
+  );
 }
 
 export default App;

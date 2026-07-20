@@ -1,0 +1,23 @@
+{
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // 💡 자바스크립트 파일 전용 강제 설정
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  // 💡 리액트(JSX) 파일 전용 강제 설정
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // 🔥 프리티어가 설정을 못 읽을 때를 대비한 VS Code 차원의 백업 명령
+  "prettier.singleQuote": true,
+  "prettier.semi": true
+}

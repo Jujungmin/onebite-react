@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer } from 'react';
 
 // reducer: 변환기
 // -> 상태를 실제로 변환시키는 변환기 역할
@@ -9,10 +9,13 @@ function reducer(state, action) {
   // } else if(action.type === 'DECREASE') {
   //   return state - action.data;
   // }
-  switch(action.type) {
-    case 'INCREASE': return state + action.data;
-    case 'DECREASE': return state - action.data;
-    default: return state;
+  switch (action.type) {
+    case 'INCREASE':
+      return state + action.data;
+    case 'DECREASE':
+      return state - action.data;
+    default:
+      return state;
   }
 }
 
@@ -28,14 +31,14 @@ const Exam = () => {
       type: 'INCREASE', // 값을 증가
       data: 1, // 1만큼 증가시켜라
     });
-  }
+  };
 
   const onClickMinus = () => {
     dispatch({
       type: 'DECREASE',
-      data: 1
-    })
-  }
+      data: 1,
+    });
+  };
 
   return (
     <div>
@@ -43,7 +46,7 @@ const Exam = () => {
       <button onClick={onClickPlus}>+</button>
       <button onClick={onClickMinus}>-</button>
     </div>
-  )
-}
+  );
+};
 
 export default Exam;
